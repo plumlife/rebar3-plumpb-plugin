@@ -25,6 +25,7 @@ init(State) ->
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
     %% TODO: this is yucky and unmaintainable
+    os:cmd("git clone https://9cbb925e0bb80f4790d61ff7aaac5777b406f5cd@github.com:plumlife/plum-protobufs.git protobuf-defs"),
     ProtoFilesStr = os:cmd("find ./protobuf-defs/lightpad/ -name \"*.proto\""),
     ProtoFiles = string:tokens(ProtoFilesStr, "\n"),
     ok = lists:foreach(fun compile_pb/1, ProtoFiles),
