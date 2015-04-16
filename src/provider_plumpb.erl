@@ -35,4 +35,5 @@ format_error(Reason) ->
     io_lib:format("~p", [Reason]).
 
 compile_pb(Path) ->
+    io:format("~s~n", [Path]),
     protobuffs_compile:scan_file(Path).
