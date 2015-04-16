@@ -1,0 +1,7 @@
+{application, provider_plumpb, [
+  {description, "Plum Erlang ProtoBuf Rebar3 Plugin"},
+  {vsn, "1.0.0"},
+  {registered, []},
+  {applications, [kernel, stdlib]},
+  {env, []}
+]}.
