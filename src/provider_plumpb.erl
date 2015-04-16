@@ -28,6 +28,7 @@ do(State) ->
     ProtoFilesStr = os:cmd("find ./protobufs/lightpad/ -name \"*.proto\""),
     ProtoFiles = string:tokens(ProtoFilesStr, "\n"),
     ok = lists:foreach(fun compile_pb/1, ProtoFiles),
+    os:cmd("rm -rf protobufs"),
     {ok, State}.
 
 -spec format_error(any()) -> iolist().
@@ -35,5 +36,5 @@ format_error(Reason) ->
     io_lib:format("~p", [Reason]).
 
 compile_pb(Path) ->
-    io:format("~s~n", [Path]),
+    rebar_api:console("Compiling ~s", [Path]),
     protobuffs_compile:scan_file(Path).
