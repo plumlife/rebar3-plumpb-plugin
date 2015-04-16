@@ -31,7 +31,7 @@ do(State) ->
     %% TODO: this is yucky and unmaintainable
     os:cmd("mv *.beam *.hrl _build/default/lib/plumpb/ebin/"),
     %% TODO: this is yucky and unmaintainable
-    os:cmd("rm -rf protobufs"),
+    os:cmd("rm -rf protobuf-defs"),
     {ok, State}.
 
 -spec format_error(any()) -> iolist().
