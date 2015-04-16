@@ -29,7 +29,7 @@ do(State) ->
     ProtoFilesStr = os:cmd("find ./protobufs/lightpad/ -name \"*.proto\""),
     ProtoFiles = string:tokens(ProtoFilesStr, "\n"),
     ok = lists:foreach(fun compile_pb/1, ProtoFiles),
-    os:cmd("mv *.beam *.hrl ebin/"),
+    os:cmd("mv *.beam *.hrl _build/default/lib/plumpb/ebin/"),
     os:cmd("rm -rf protobufs"),
     {ok, State}.
 
