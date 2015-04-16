@@ -25,7 +25,7 @@ init(State) ->
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
     os:cmd("git clone git@github.com:plumlife/plum-protobufs.git protobufs"),
-    ProtoFilesStr = os:cmd("find ./plum-protobufs -name \"*.proto\""),
+    ProtoFilesStr = os:cmd("find ./protobufs -name \"*.proto\""),
     ProtoFiles = string:tokens(ProtoFilesStr, "\n"),
     ok = lists:foreach(fun compile_pb/1, ProtoFiles),
     {ok, State}.
@@ -35,5 +35,4 @@ format_error(Reason) ->
     io_lib:format("~p", [Reason]).
 
 compile_pb(Path) ->
-    io:format("~s~n", [Path]),
     protobuffs_compile:scan_file(Path).
