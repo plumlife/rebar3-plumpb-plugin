@@ -24,10 +24,10 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
-    %% os:cmd("git clone git@github.com:plumlife/plum-protobufs.git protobufs"),
-    %% ProtoFilesStr = os:cmd("find ./plum-protobufs -name \"*.proto\""),
-    %% ProtoFiles = string:tokens(ProfoFilesStr, "\n"),
-    %% ok = lists:foreach(fun compile_pb/1, ProtoFiles),
+    os:cmd("git clone git@github.com:plumlife/plum-protobufs.git protobufs"),
+    ProtoFilesStr = os:cmd("find ./plum-protobufs -name \"*.proto\""),
+    ProtoFiles = string:tokens(ProfoFilesStr, "\n"),
+    ok = lists:foreach(fun compile_pb/1, ProtoFiles),
     {ok, State}.
 
 -spec format_error(any()) -> iolist().
