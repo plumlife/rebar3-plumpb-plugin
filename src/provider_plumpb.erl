@@ -26,7 +26,7 @@ init(State) ->
 do(State) ->
     os:cmd("git clone git@github.com:plumlife/plum-protobufs.git protobufs"),
     ProtoFilesStr = os:cmd("find ./plum-protobufs -name \"*.proto\""),
-    ProtoFiles = string:tokens(ProfoFilesStr, "\n"),
+    ProtoFiles = string:tokens(ProtoFilesStr, "\n"),
     ok = lists:foreach(fun compile_pb/1, ProtoFiles),
     {ok, State}.
 
