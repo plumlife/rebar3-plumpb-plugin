@@ -27,8 +27,6 @@ do(State) ->
     %% TODO: this is yucky and unmaintainable
     os:cmd("git clone git@github.com:plumlife/plum-protobufs.git protobufs"),
     %% TODO: this is yucky and unmaintainable
-    os:cmd("mkdir ebin"),
-    %% TODO: this is yucky and unmaintainable
     ProtoFilesStr = os:cmd("find ./protobufs/lightpad/ -name \"*.proto\""),
     ProtoFiles = string:tokens(ProtoFilesStr, "\n"),
     ok = lists:foreach(fun compile_pb/1, ProtoFiles),
