@@ -24,12 +24,17 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
+    %% TODO: this is yucky and unmaintainable
     os:cmd("git clone git@github.com:plumlife/plum-protobufs.git protobufs"),
+    %% TODO: this is yucky and unmaintainable
     os:cmd("mkdir ebin"),
+    %% TODO: this is yucky and unmaintainable
     ProtoFilesStr = os:cmd("find ./protobufs/lightpad/ -name \"*.proto\""),
     ProtoFiles = string:tokens(ProtoFilesStr, "\n"),
     ok = lists:foreach(fun compile_pb/1, ProtoFiles),
+    %% TODO: this is yucky and unmaintainable
     os:cmd("mv *.beam *.hrl _build/default/lib/plumpb/ebin/"),
+    %% TODO: this is yucky and unmaintainable
     os:cmd("rm -rf protobufs"),
     {ok, State}.
 
